@@ -49,8 +49,3 @@ A corrida exibirá o modelo do veículo e em qual posição está no momento, at
 1. Compile todas as classes Java.
 2. Execute a classe `Main`.
 3. Siga as instruções exibidas no menu.
-
-### Exemplo de Uso
-
-Ao selecionar a opção 6 para iniciar a corrida, a saída pode ser algo assim:
-
