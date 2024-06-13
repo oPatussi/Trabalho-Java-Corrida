@@ -1,84 +1,126 @@
-import java.util.List;
-import java.util.Scanner;
+import java.util.Scanner; // Importa a classe Scanner para ler entradas do usuário.
 
 public class UserInteract {
 
-    private final String REQUEST_VEHICLE_BRAND = "Qual a marca do veículo ?";
-    private final String REQUEST_VEHICLE_MODEL = "Qual o modelo do veículo ?";
-    private final String REQUEST_VEHICLE_WEIGHT = "Qual o peso do veículo ?";
-    private final String REQUEST_VEHICLE_REMOVE = "Qual veículo deseja remover da corrida ?";
-    private final String REQUEST_VEHICLE_HORSE_POWER = "Quantos cavalos de potência têm o veículo ?";
-    private final String CONFIMATION_VEHICLE_ADD = "Veículo adicionado com sucesso.";
-    private final String CONFIMATION_VEHICLE_REMOVE = "Veículo removido com sucesso.";
-    private final String REQUEST_NEW_TRACK_SIZE = "Qual o novo tamanho da pista que deseja criar ?";
+    // Mensagens de solicitação e confirmação definidas como constantes.
+    private static final String REQUEST_VEHICLE_BRAND = "Qual a marca do veículo?";
+    private static final String REQUEST_VEHICLE_MODEL = "Qual o modelo do veículo?";
+    private static final String REQUEST_VEHICLE_WEIGHT = "Qual o peso do veículo?";
+    private static final String REQUEST_VEHICLE_REMOVE = "Qual veículo deseja remover da corrida?";
+    private static final String REQUEST_VEHICLE_HORSE_POWER = "Quantos cavalos de potência têm o veículo?";
+    private static final String CONFIRMATION_VEHICLE_ADD = "Veículo adicionado com sucesso.";
+    private static final String CONFIRMATION_VEHICLE_REMOVE = "Veículo removido com sucesso.";
+    private static final String REQUEST_NEW_TRACK_SIZE = "Qual o novo tamanho da pista que deseja criar?";
 
-    final String MENU = """
+    // String que define o menu a ser exibido ao usuário.
+    private static final String MENU = """
             ========== Menu ==========
             1 - Listar todos os veículos da Corrida
-            2 - Adicionar um carro a corrida
-            3 - Adicinar uma moto a corrida
+            2 - Adicionar um carro à corrida
+            3 - Adicionar uma moto à corrida
             4 - Remover um veículo
-            5 - Encontrar carro mais potente
+            5 - Encontrar veículo mais potente
             6 - Iniciar corrida
-            7 - Alterar tamanho da corrida
+            7 - Alterar tamanho da pista
             0 - Sair
             """;
 
-    final String SPACER = "==================";
+    // Espaçador visual.
+    private static final String SPACER = "==================";
 
-    public String waitForVehicleBrand(Scanner scanner){
+    // Método para solicitar a marca do veículo.
+    public String waitForVehicleBrand(Scanner scanner) {
         System.out.println(REQUEST_VEHICLE_BRAND);
         return scanner.nextLine();
     }
 
-    public String waitForVehicleModel(Scanner scanner){
+    // Método para solicitar o modelo do veículo.
+    public String waitForVehicleModel(Scanner scanner) {
         System.out.println(REQUEST_VEHICLE_MODEL);
         return scanner.nextLine();
     }
 
-    public double waitForVehicleWeight(Scanner scanner){
-        System.out.println(REQUEST_VEHICLE_WEIGHT);
-        return scanner.nextDouble();
+    // Método para solicitar o peso do veículo.
+    public double waitForVehicleWeight(Scanner scanner) {
+        double weight = -1;
+        while (weight < 0) { // Valida a entrada para garantir que seja um número positivo.
+            try {
+                System.out.println(REQUEST_VEHICLE_WEIGHT);
+                weight = Double.parseDouble(scanner.nextLine());
+            } catch (NumberFormatException e) { // Trata exceções caso o usuário insira um valor inválido.
+                System.out.println("Por favor, insira um número válido para o peso.");
+            }
+        }
+        return weight;
     }
 
-    public int waitForVehicleHorsePower(Scanner scanner){
-        System.out.println(REQUEST_VEHICLE_HORSE_POWER);
-        return scanner.nextInt();
+    // Método para solicitar a potência do veículo.
+    public int waitForVehicleHorsePower(Scanner scanner) {
+        int horsePower = -1;
+        while (horsePower < 0) { // Valida a entrada para garantir que seja um número positivo.
+            try {
+                System.out.println(REQUEST_VEHICLE_HORSE_POWER);
+                horsePower = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) { // Trata exceções caso o usuário insira um valor inválido.
+                System.out.println("Por favor, insira um número inteiro válido para a potência.");
+            }
+        }
+        return horsePower;
     }
 
-    public int waitForVehicleToRemove(Scanner scanner){
-        System.out.println(REQUEST_VEHICLE_REMOVE);
-        return scanner.nextInt();
+    // Método para solicitar o índice do veículo a ser removido.
+    public int waitForVehicleToRemove(Scanner scanner) {
+        int vehicleToRemove = -1;
+        while (vehicleToRemove < 0) { // Valida a entrada para garantir que seja um número positivo.
+            try {
+                System.out.println(REQUEST_VEHICLE_REMOVE);
+                vehicleToRemove = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) { // Trata exceções caso o usuário insira um valor inválido.
+                System.out.println("Por favor, insira um número inteiro válido para o veículo a ser removido.");
+            }
+        }
+        return vehicleToRemove;
     }
 
-    public int waitForNewTrackSize(Scanner scanner){
-        System.out.println(REQUEST_NEW_TRACK_SIZE);
-        return scanner.nextInt();
+    // Método para solicitar o novo tamanho da pista.
+    public int waitForNewTrackSize(Scanner scanner) {
+        int trackSize = -1;
+        while (trackSize < 0) { // Valida a entrada para garantir que seja um número positivo.
+            try {
+                System.out.println(REQUEST_NEW_TRACK_SIZE);
+                trackSize = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) { // Trata exceções caso o usuário insira um valor inválido.
+                System.out.println("Por favor, insira um número inteiro válido para o tamanho da pista.");
+            }
+        }
+        return trackSize;
     }
 
-    public void confimationVehicleCreated(){
-        System.out.println(CONFIMATION_VEHICLE_ADD);
+    // Método para confirmar que o veículo foi criado.
+    public void confirmationVehicleCreated() {
+        System.out.println(CONFIRMATION_VEHICLE_ADD);
     }
 
-    public void confimationVehicleRemoved(){
-        System.out.println(CONFIMATION_VEHICLE_REMOVE);
+    // Método para confirmar que o veículo foi removido.
+    public void confirmationVehicleRemoved() {
+        System.out.println(CONFIRMATION_VEHICLE_REMOVE);
     }
 
-
-    public int showMenu(Scanner scanner){
+    // Método para exibir o menu e capturar a opção do usuário.
+    public int showMenu(Scanner scanner) {
         int escolha = -1;
         boolean entradaValida = false;
 
-        while (!entradaValida) {
+        while (!entradaValida) { // Loop até que o usuário insira uma opção válida.
             try {
                 System.out.println(MENU);
-                escolha = Integer.parseInt(scanner.nextLine());
-                entradaValida = true;
-            } catch (NumberFormatException e) {
+                escolha = Integer.parseInt(scanner.nextLine()); // Lê a entrada do usuário e converte para int.
+                entradaValida = true; // Se a conversão for bem-sucedida, a entrada é válida.
+            } catch (NumberFormatException e) { // Trata exceções caso o usuário insira um valor inválido.
                 System.out.println("Por favor, insira um número inteiro válido.");
             }
         }
 
-        return escolha;
+        return escolha; // Retorna a escolha do usuário.
     }
 }
